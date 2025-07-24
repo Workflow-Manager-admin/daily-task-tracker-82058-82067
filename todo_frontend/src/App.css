@@ -1,104 +1,138 @@
-/* CSS Variables for Theme Management */
+/* CSS Variables for Minimalistic Todo App */
 :root {
-  /* Light theme colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
-  --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
+  --color-accent: #ff9800;
+  --color-primary: #1976d2;
+  --color-secondary: #424242;
+  --color-bg: #fff;
+  --color-task-inactive: #eee;
+  --color-task-shadow: #cccccc;
+  --color-text: #282c34;
+  --color-text-light: #888;
+  --color-border: #e9ecef;
 }
 
-[data-theme="dark"] {
-  /* Dark theme colors */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #282c34;
-  --text-primary: #ffffff;
-  --text-secondary: #61dafb;
-  --border-color: #404040;
-  --button-bg: #0056b3;
-  --button-text: #ffffff;
+/* Minimalistic reset and body settings */
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: "Segoe UI", "Roboto", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-.App {
-  text-align: center;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: var(--bg-secondary);
+/* Main app container */
+.todo-app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease;
-  position: relative;
+  background: var(--color-bg);
 }
 
-.App-link {
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
+.todo-header {
+  user-select: none;
+  font-family: inherit;
+  border-bottom: 1.5px solid var(--color-border);
+  letter-spacing: 2px;
 }
 
-.theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
+/* Task list */
+.todo-list-wrapper {
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 400px;
+}
+.task-list {
+  margin: 0;
+  padding: 0;
+}
+.task-list-item {
+  font-family: inherit;
+  background: var(--color-bg);
+  box-sizing: border-box;
+  border-radius: 6px;
+  transition: box-shadow 0.15s;
+}
+.task-list-item:active,
+.task-list-item:focus-within {
+  box-shadow: 0 2px 9px -5px var(--color-task-shadow);
+}
+
+/* Add/Edit Inputs */
+.add-task-input,
+.edit-task-input {
+  font-family: inherit;
+  font-size: 16px;
+  border: 1.5px solid var(--color-primary);
+  padding: 0.7em 1em;
+  background: #fafcfa;
+  color: var(--color-text);
+  border-radius: 6px;
+  transition: border 0.17s;
+  margin-right: 0.4em;
+}
+.add-task-input:focus,
+.edit-task-input:focus {
+  border: 1.5px solid var(--color-accent);
+  outline: none;
+  background: #fff3e3;
+}
+
+/* Delete Button */
+.delete-btn {
+  background: transparent;
   border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 14px;
-  font-weight: 600;
+  color: var(--color-secondary);
+  font-size: 1.08em;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  opacity: 0.65;
+  transition: background 0.13s, color 0.18s, opacity 0.16s;
+}
+.delete-btn:hover {
+  opacity: 1;
+  color: var(--color-accent);
+  background: #ffeede;
 }
 
-.theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  opacity: 0.9;
+/* Task filters */
+.task-filters button {
+  margin: 0 2px;
+  font-family: inherit;
 }
 
-.theme-toggle:active {
-  transform: translateY(0);
+.task-list .task-text {
+  cursor: pointer;
+  transition: color 0.16s;
+}
+.task-list .task-text:active {
+  color: var(--color-accent);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.add-task-form {
+  border-top: 1px solid var(--color-border);
+}
+
+/* Responsive design for max-width: 500px */
+@media (max-width: 700px) {
+  .todo-list-wrapper,
+  .todo-footer {
+    max-width: 96vw !important;
+    min-width: 0;
+    padding-left: 2vw;
+    padding-right: 2vw;
   }
-  to {
-    transform: rotate(360deg);
+  .todo-header {
+    font-size: 1.6rem !important;
+    padding-left: 5vw !important;
+    padding-right: 5vw !important;
   }
-}
-
-/* Responsive design for mobile */
-@media (max-width: 768px) {
-  .theme-toggle {
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    font-size: 12px;
+  .add-task-input,
+  .edit-task-input {
+    font-size: 15px !important;
+    padding: 9px 8px !important;
+  }
+  .task-list-item {
+    padding: 0.7em 1vw !important;
   }
 }
