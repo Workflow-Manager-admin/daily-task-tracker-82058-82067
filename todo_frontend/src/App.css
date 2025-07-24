@@ -1,0 +1,138 @@
+/* CSS Variables for Minimalistic Todo App */
+:root {
+  --color-accent: #ff9800;
+  --color-primary: #1976d2;
+  --color-secondary: #424242;
+  --color-bg: #fff;
+  --color-task-inactive: #eee;
+  --color-task-shadow: #cccccc;
+  --color-text: #282c34;
+  --color-text-light: #888;
+  --color-border: #e9ecef;
+}
+
+/* Minimalistic reset and body settings */
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: "Segoe UI", "Roboto", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Main app container */
+.todo-app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+}
+
+.todo-header {
+  user-select: none;
+  font-family: inherit;
+  border-bottom: 1.5px solid var(--color-border);
+  letter-spacing: 2px;
+}
+
+/* Task list */
+.todo-list-wrapper {
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 400px;
+}
+.task-list {
+  margin: 0;
+  padding: 0;
+}
+.task-list-item {
+  font-family: inherit;
+  background: var(--color-bg);
+  box-sizing: border-box;
+  border-radius: 6px;
+  transition: box-shadow 0.15s;
+}
+.task-list-item:active,
+.task-list-item:focus-within {
+  box-shadow: 0 2px 9px -5px var(--color-task-shadow);
+}
+
+/* Add/Edit Inputs */
+.add-task-input,
+.edit-task-input {
+  font-family: inherit;
+  font-size: 16px;
+  border: 1.5px solid var(--color-primary);
+  padding: 0.7em 1em;
+  background: #fafcfa;
+  color: var(--color-text);
+  border-radius: 6px;
+  transition: border 0.17s;
+  margin-right: 0.4em;
+}
+.add-task-input:focus,
+.edit-task-input:focus {
+  border: 1.5px solid var(--color-accent);
+  outline: none;
+  background: #fff3e3;
+}
+
+/* Delete Button */
+.delete-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-secondary);
+  font-size: 1.08em;
+  cursor: pointer;
+  border-radius: 4px;
+  opacity: 0.65;
+  transition: background 0.13s, color 0.18s, opacity 0.16s;
+}
+.delete-btn:hover {
+  opacity: 1;
+  color: var(--color-accent);
+  background: #ffeede;
+}
+
+/* Task filters */
+.task-filters button {
+  margin: 0 2px;
+  font-family: inherit;
+}
+
+.task-list .task-text {
+  cursor: pointer;
+  transition: color 0.16s;
+}
+.task-list .task-text:active {
+  color: var(--color-accent);
+}
+
+.add-task-form {
+  border-top: 1px solid var(--color-border);
+}
+
+/* Responsive design for max-width: 500px */
+@media (max-width: 700px) {
+  .todo-list-wrapper,
+  .todo-footer {
+    max-width: 96vw !important;
+    min-width: 0;
+    padding-left: 2vw;
+    padding-right: 2vw;
+  }
+  .todo-header {
+    font-size: 1.6rem !important;
+    padding-left: 5vw !important;
+    padding-right: 5vw !important;
+  }
+  .add-task-input,
+  .edit-task-input {
+    font-size: 15px !important;
+    padding: 9px 8px !important;
+  }
+  .task-list-item {
+    padding: 0.7em 1vw !important;
+  }
+}
